@@ -7,34 +7,43 @@ enable-magisk-update = true   # set this to false if you do not want to receive 
 
 [Reddit]
 apkmirror-dlurl = "https://apkmirror.com/apk/redditinc/reddit/"
+arch = "both"
 
 [Music]
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube-music/"
 build-mode = "both"
+arch = "both"
 
 [Twitter]
 apkmirror-dlurl = "https://apkmirror.com/apk/twitter-inc/twitter/"
+arch = "both"
 
 [YouTube]
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 build-mode = "both"
+arch = "both"
 
 [Twitch]
 apkmirror-dlurl = "https://apkmirror.com/apk/twitch-interactive-inc/twitch/"
+arch = "both"
 
 [Tiktok]
 apkmirror-dlurl = "https://apkmirror.com/apk/tiktok-pte-ltd/tik-tok-including-musical-ly/"
+arch = "both"
 
 [Instagram]
 apkmirror-dlurl = "https://apkmirror.com/apk/instagram/instagram-instagram/"
+arch = "both"
 
 [Duolingo]
 apkmirror-dlurl = "https://apkmirror.com/apk/duolingo/duolingo-duolingo/"
 included-patches = "'Disable ads'"
 exclusive-patches = true
+arch = "both"
 
 [Yuka]
 apkmirror-dlurl = "https://apkmirror.com/apk/yuka-apps/yuka-food-cosmetic-scan/"
+arch = "both"
 
 [Google Photos]
 version = "auto"

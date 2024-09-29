@@ -37,5 +37,8 @@ exclusive-patches = true
 apkmirror-dlurl = "https://apkmirror.com/apk/yuka-apps/yuka-food-cosmetic-scan/"
 
 [Google Photos]
+version = "auto"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/photos/"
+included-patches = "'com.google.android.apps.photos.nexus_preload' 'com.google.android.apps.photos.NEXUS_PRELOAD' 'com.google.android.feature.PIXEL_2021_EXPERIENCE' 'com.google.android.feature.PIXEL_2022_EXPERIENCE'"
+arch = "both"
 build-mode = "both"

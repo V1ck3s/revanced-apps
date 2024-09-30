@@ -6,6 +6,7 @@ enable-magisk-update = true   # set this to false if you do not want to receive 
 # you can use rvmm-config-gen to generate a config
 
 [Reddit]
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.reddit.frontpage"
 apkmirror-dlurl = "https://apkmirror.com/apk/redditinc/reddit/"
 arch = "both"
 
@@ -15,20 +16,26 @@ build-mode = "both"
 arch = "both"
 
 [Twitter]
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.twitter.android"
 apkmirror-dlurl = "https://apkmirror.com/apk/twitter-inc/twitter/"
 arch = "all"
 apkmirror-dpi = "120-640dpi"
 
 [YouTube]
-apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 build-mode = "both"
-arch = "both"
+excluded-patches = ""
+included-patches = ""
+version = "auto"
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
+apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 
 [Twitch]
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/tv.twitch.android.app"
 apkmirror-dlurl = "https://apkmirror.com/apk/twitch-interactive-inc/twitch/"
 arch = "both"
 
 [Tiktok]
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.zhiliaoapp.musically"
 apkmirror-dlurl = "https://apkmirror.com/apk/tiktok-pte-ltd/tik-tok-including-musical-ly/"
 arch = "both"
 

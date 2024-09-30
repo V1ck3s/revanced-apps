@@ -3,6 +3,7 @@
 [![CI](https://github.com/j-hc/revanced-magisk-module/actions/workflows/ci.yml/badge.svg?event=schedule)](https://github.com/j-hc/revanced-magisk-module/actions/workflows/ci.yml)
 
 Get the [latest releases here](https://github.com/V1ck3s/revanced-apps/releases).
+Install and update directly from android with [Obtainium](https://github.com/ImranR98/Obtainium).
 
 <big>Apps :</big>
 <ul>

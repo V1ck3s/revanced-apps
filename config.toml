@@ -18,7 +18,6 @@ arch = "both"
 [Twitter]
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.twitter.android"
 apkmirror-dlurl = "https://apkmirror.com/apk/twitter-inc/twitter/"
-arch = "all"
 apkmirror-dpi = "120-640dpi"
 
 [YouTube]
@@ -32,7 +31,6 @@ apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 [Twitch]
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/tv.twitch.android.app"
 apkmirror-dlurl = "https://apkmirror.com/apk/twitch-interactive-inc/twitch/"
-arch = "both"
 
 [Tiktok]
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.zhiliaoapp.musically"
@@ -52,7 +50,6 @@ apkmirror-dpi = "120-640dpi"
 
 [Yuka]
 apkmirror-dlurl = "https://apkmirror.com/apk/yuka-apps/yuka-food-cosmetic-scan/"
-arch = "all"
 
 [Google Photos]
 version = "auto"

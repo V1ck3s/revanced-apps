@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReVanced Apps - Latest Release</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        main {
+            flex: 1 0 auto;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .nav-wrapper {
+            background-color: #1e1e1e;
+        }
+        .brand-logo {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .highlight > tbody > tr:hover {
+            background-color: #333333;
+        }
+        .page-footer {
+            background-color: #1e1e1e;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center">ReVanced Apps</a>
+        </div>
+    </nav>
+    <main>
+        <div class="container">
+            <h4>Latest Release</h4>
+            <table class="highlight">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Version</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="release-table">
+                    <!-- Data will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">ReVanced Apps</h5>
+                    <p class="grey-text text-lighten-4">Listing all assets from the latest release.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('https://api.github.com/repos/V1ck3s/revanced-apps/releases/latest')
+                .then(response => response.json())
+                .then(data => {
+                    const table = document.getElementById('release-table');
+                    data.assets.forEach(asset => {
+                        const row = document.createElement('tr');
+                        const nameCell = document.createElement('td');
+                        const versionCell = document.createElement('td');
+                        const linkCell = document.createElement('td');
+                        const link = document.createElement('a');
+
+                        const nameParts = asset.name.split('-');
+                        const version = nameParts.slice(2).join('-').replace('v', '').replace('.apk', '').replace('.zip','');
+                        const name = nameParts[0];
+
+                        nameCell.textContent = name;
+                        versionCell.textContent = version;
+                        link.href = asset.browser_download_url;
+                        link.textContent = 'Download';
+                        link.target = '_blank';
+
+                        linkCell.appendChild(link);
+                        row.appendChild(nameCell);
+                        row.appendChild(versionCell);
+                        row.appendChild(linkCell);
+                        table.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching release data:', error));
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

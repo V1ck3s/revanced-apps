@@ -20,3 +20,7 @@ Install and update directly from android with [Obtainium](https://github.com/Imr
 </ul>
 
 Use [**zygisk-detach**](https://github.com/j-hc/zygisk-detach) to detach YouTube and YT Music from Play Store if you are using magisk modules. 
+
+## Static Website
+
+We now have a [static website](https://V1ck3s.github.io/revanced-apps) hosted on GitHub Pages. This website lists all assets from the latest release, including their name, version, and download link, in a table with a material design style. Check it out for a beautiful and easy-to-navigate view of the latest ReVanced apps.

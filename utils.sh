@@ -323,7 +323,23 @@ dl_apkmirror() {
 		req "$url" "${output}.apkm"
 		merge_splits "${output}.apkm" "${output}"
 	else
-		req "$url" "${output}"
+		local retries=0
+		while true; do
+			req "$url" "${output}"
+			if [ $? -eq 0 ]; then
+				break
+			elif grep -q "Too Many Requests" "${output}"; then
+				if [ $retries -ge 5 ]; then
+					epr "ERROR: Too many requests. Exceeded maximum retries."
+					return 1
+				fi
+				pr "Too many requests. Waiting for 1 minute before retrying..."
+				sleep 60
+				retries=$((retries + 1))
+			else
+				return 1
+			fi
+		done
 	fi
 }
 get_apkmirror_vers() {

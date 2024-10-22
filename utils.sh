@@ -305,9 +305,9 @@ dl_apkmirror() {
 		local resp node app_table dlurl=""
 		url="${url}/${url##*/}-${version//./-}-release/"
 		for i in {1..5}; do
-			resp=$(req "$url" -) && break || { epr "ERROR : Retrying download in 5min for ${table}"; sleep 300; }
+			resp=$(req "$url" -) && break || { pr "ERROR : Retrying download in 5min for ${table}"; sleep 300; }
 		done
-		[ -z "$resp" ] && { epr "ERROR : Retrying failed for the 5th time, aborting"; return 1; }
+		[ -z "$resp" ] && { pr "ERROR : Retrying failed for the 5th time, aborting"; return 1; }
 		node=$($HTMLQ "div.table-row.headerFont:nth-last-child(1)" -r "span:nth-child(n+3)" <<<"$resp")
 		if [ "$node" ]; then
 			if ! dlurl=$(apk_mirror_search "$resp" "$dpi" "${arch}" "APK"); then

@@ -70,24 +70,40 @@
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('https://api.github.com/repos/V1ck3s/revanced-apps/releases/latest')
+            fetch('https://api.github.com/repos/V1ck3s/revanced-apps/releases')
                 .then(response => response.json())
                 .then(data => {
                     const table = document.getElementById('release-table');
-                    data.assets.forEach(asset => {
+                    const latestVersions = {};
+
+                    data.forEach(release => {
+                        release.assets.forEach(asset => {
+                            const nameParts = asset.name.split('-');
+                            const version = nameParts.slice(2).join('-').replace('v', '').replace('.apk', '').replace('.zip','');
+                            const name = nameParts[0];
+                            const isMagisk = asset.name.includes('magisk');
+
+                            const displayName = isMagisk ? `${name} Magisk` : name;
+
+                            if (!latestVersions[displayName] || latestVersions[displayName].version < version) {
+                                latestVersions[displayName] = {
+                                    version: version,
+                                    url: asset.browser_download_url
+                                };
+                            }
+                        });
+                    });
+
+                    Object.keys(latestVersions).forEach(displayName => {
                         const row = document.createElement('tr');
                         const nameCell = document.createElement('td');
                         const versionCell = document.createElement('td');
                         const linkCell = document.createElement('td');
                         const link = document.createElement('a');
 
-                        const nameParts = asset.name.split('-');
-                        const version = nameParts.slice(2).join('-').replace('v', '').replace('.apk', '').replace('.zip','');
-                        const name = nameParts[0];
-
-                        nameCell.textContent = name;
-                        versionCell.textContent = version;
-                        link.href = asset.browser_download_url;
+                        nameCell.textContent = displayName;
+                        versionCell.textContent = latestVersions[displayName].version;
+                        link.href = latestVersions[displayName].url;
                         link.textContent = 'Download';
                         link.target = '_blank';
 

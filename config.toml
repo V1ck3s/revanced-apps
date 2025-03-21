@@ -10,6 +10,7 @@ parallel-jobs = 1
 uptodown-dlurl = "https://spotify.en.uptodown.com/android"
 
 [Reddit]
+enabled=false
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.reddit.frontpage"
 apkmirror-dlurl = "https://apkmirror.com/apk/redditinc/reddit/"
 arch = "both"
@@ -19,10 +20,11 @@ apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube-music/"
 build-mode = "both"
 arch = "both"
 
-#[Twitter]
-#archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.twitter.android"
-#apkmirror-dlurl = "https://apkmirror.com/apk/twitter-inc/twitter/"
-#apkmirror-dpi = "120-640dpi"
+[Twitter]
+enabled=false
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.twitter.android"
+apkmirror-dlurl = "https://apkmirror.com/apk/twitter-inc/twitter/"
+apkmirror-dpi = "120-640dpi"
 
 [YouTube]
 build-mode = "both"
@@ -32,27 +34,32 @@ version = "auto"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 
-#[Twitch]
-#archive-dlurl = "https://archive.org/download/jhc-apks/apks/tv.twitch.android.app"
-#apkmirror-dlurl = "https://apkmirror.com/apk/twitch-interactive-inc/twitch/"
+[Twitch]
+enabled=false
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/tv.twitch.android.app"
+apkmirror-dlurl = "https://apkmirror.com/apk/twitch-interactive-inc/twitch/"
 
-#[Tiktok]
-#archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.zhiliaoapp.musically"
-#apkmirror-dlurl = "https://apkmirror.com/apk/tiktok-pte-ltd/tik-tok-including-musical-ly/"
-#arch = "both"
+[Tiktok]
+enabled=false
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.zhiliaoapp.musically"
+apkmirror-dlurl = "https://apkmirror.com/apk/tiktok-pte-ltd/tik-tok-including-musical-ly/"
+arch = "both"
 
-#[Instagram]
-#apkmirror-dlurl = "https://apkmirror.com/apk/instagram/instagram-instagram/"
-#arch = "arm64-v8a"
+[Instagram]
+enabled=false
+apkmirror-dlurl = "https://apkmirror.com/apk/instagram/instagram-instagram/"
+arch = "arm64-v8a"
 
-#[Duolingo]
-#apkmirror-dlurl = "https://apkmirror.com/apk/duolingo/duolingo-duolingo/"
-#included-patches = "'Disable ads'"
-#exclusive-patches = true
-#arch = "all"
-#apkmirror-dpi = "120-640dpi"
+[Duolingo]
+enabled=false
+apkmirror-dlurl = "https://apkmirror.com/apk/duolingo/duolingo-duolingo/"
+included-patches = "'Disable ads'"
+exclusive-patches = true
+arch = "all"
+apkmirror-dpi = "120-640dpi"
 
 [Yuka]
+enabled=false
 apkmirror-dlurl = "https://apkmirror.com/apk/yuka-apps/yuka-food-cosmetic-scan/"
 
 [GooglePhotos]

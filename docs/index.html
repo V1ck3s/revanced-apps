@@ -4,119 +4,608 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ReVanced Apps - Latest Release</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
+        :root {
+            --md-primary: #c38f5e;
+            --md-secondary: #c5cb96;
+            --md-on-primary: #201b17;
+            --md-surface: #201b17;
+            --md-on-surface: #f5f5f5;
+            --md-surface-variant: #29211b;
+            --md-outline: #3a3a4d;
+            --md-table-row-hover: #29211b;
+            --md-card-bg: #29211b;
+            --md-footer-bg: #201b17;
+            --md-footer-color: #c5cb96;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
         body {
-            display: flex;
             min-height: 100vh;
+            background: var(--md-surface);
+            color: var(--md-on-surface);
+            font-family: 'Roboto', Arial, sans-serif;
+            display: flex;
             flex-direction: column;
-            background-color: #121212;
-            color: #ffffff;
-            font-family: 'Courier New', Courier, monospace;
+        }
+        header {
+            position: static;
+            z-index: 10;
+            background: var(--md-primary);
+            color: var(--md-on-primary);
+            box-shadow: 0 2px 8px rgba(195,143,94,0.10);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 64px;
+            min-height: 64px;
+            max-height: 64px;
+            overflow: hidden;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 100%;
+            justify-content: center;
+        }
+        .header-icon {
+            font-size: 2rem;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .header-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            line-height: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         main {
             flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 8px 0 8px;
         }
-        .container {
-            margin-top: 50px;
+        .card {
+            background: var(--md-card-bg);
+            border-radius: 24px;
+            box-shadow: 0 4px 24px 0 rgba(195,143,94,0.10);
+            max-width: 520px;
+            width: 100%;
+            margin: 0 auto 32px auto;
+            padding: 0 0 24px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
         }
-        .nav-wrapper {
-            background-color: #1e1e1e;
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin: 32px 32px 8px 32px;
+            color: var(--md-primary);
         }
-        .brand-logo {
-            font-family: 'Courier New', Courier, monospace;
+        .tabs-bar {
+            margin: 0 0 16px 0;
+            display: flex;
+            justify-content: center;
+            background: var(--md-card-bg);
+            border-radius: 16px 16px 0 0;
+            gap: 0;
         }
-        .highlight > tbody > tr:hover {
-            background-color: #333333;
+        .tab-btn {
+            background: none;
+            border: none;
+            outline: none;
+            color: var(--md-footer-color);
+            font-family: 'Roboto', Arial, sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 14px 32px 10px 32px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: color 0.2s, border-bottom 0.2s;
         }
-        .page-footer {
-            background-color: #1e1e1e;
+        .tab-btn.active {
+            color: var(--md-primary);
+            border-bottom: 3px solid var(--md-primary);
+            background: rgba(195,143,94,0.08); /* #c38f5e, 8% */
+        }
+        .table-container {
+            padding: 0;
+            width: 100%;
+            overflow-x: unset;
+        }
+        table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: transparent;
+        }
+        th, td {
+            padding: 14px 10px;
+            text-align: left;
+            word-break: break-word;
+        }
+        th:last-child, td:last-child {
+            white-space: nowrap;
+        }
+        th {
+            background: var(--md-surface-variant);
+            color: var(--md-primary);
+            font-weight: 500;
+            border-bottom: 2px solid var(--md-outline);
+        }
+        tr {
+            transition: background 0.2s;
+        }
+        tbody tr:hover {
+            background: var(--md-table-row-hover);
+        }
+        .download-btn {
+            --md-filled-button-container-color: var(--md-primary);
+            --md-filled-button-label-text-color: var(--md-on-primary);
+            border-radius: 12px;
+            font-size: 1rem;
+            padding: 0 18px;
+            min-width: 120px;
+            max-width: 100%;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            height: 40px;
+            background: var(--md-filled-button-container-color);
+            color: var(--md-filled-button-label-text-color);
+            border: none;
+            box-shadow: 0 2px 4px 0 rgba(195,143,94,0.10);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+        .download-btn:hover, .download-btn:focus {
+            background: #a97a4d;
+            color: #fff;
+            box-shadow: 0 4px 12px 0 rgba(195,143,94,0.18);
+        }
+        .download-btn-content {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        .download-btn-content .material-icons {
+            font-size: 1.2em;
+            margin-right: 2px;
+            vertical-align: middle;
+        }
+        .footer {
+            background: var(--md-footer-bg);
+            color: var(--md-footer-color);
+            border-top: 1px solid var(--md-card-bg);
+            text-align: center;
+            padding: 24px 0 12px 0;
+            font-size: 1rem;
+            letter-spacing: 0.01em;
+        }
+        .lang-btn {
+            background: var(--md-card-bg);
+            color: var(--md-primary);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Roboto', Arial, sans-serif;
+            font-weight: 500;
+            padding: 6px 18px;
+            margin-left: 12px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            height: 40px;
+            align-self: center;
+        }
+        .lang-btn:hover, .lang-btn:focus {
+            background: var(--md-primary);
+            color: var(--md-card-bg);
+        }
+        a {
+            color: var(--md-primary);
+        }
+        @media (max-width: 600px) {
+            header {
+                height: 56px;
+                min-height: 56px;
+                max-height: 56px;
+                padding: 0 4px;
+            }
+            .header-title {
+                font-size: 1.1rem;
+                line-height: 1.2;
+                height: auto;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: block;
+                text-align: center;
+                margin: 0 4px;
+            }
+            .header-content {
+                gap: 8px;
+            }
+            .header-icon {
+                font-size: 1.5rem;
+                height: 56px;
+            }
+            .card {
+                border-radius: 0;
+                box-shadow: none;
+                max-width: 100vw;
+                width: 100%;
+                margin: 0 0 16px 0;
+                padding: 0 0 16px 0;
+                box-sizing: border-box;
+            }
+            .card-title {
+                margin: 24px 8px 8px 8px;
+                font-size: 1.1rem;
+            }
+            .tabs-bar {
+                border-radius: 0;
+            }
+            .tab-btn {
+                padding: 12px 8px 8px 8px;
+                font-size: 0.98rem;
+            }
+            .table-container {
+                padding: 0 2px;
+                overflow-x: unset;
+                width: 100vw;
+                max-width: 100vw;
+                box-sizing: border-box;
+            }
+            table, thead, tbody, th, td, tr {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+                max-width: 100vw;
+                overflow-x: hidden;
+            }
+            thead {
+                display: none;
+            }
+            tr {
+                margin-bottom: 16px;
+                border-radius: 12px;
+                background: var(--md-card-bg);
+                box-shadow: 0 2px 8px 0 rgba(195,143,94,0.08);
+                padding: 8px 0;
+            }
+            td {
+                padding: 10px 12px;
+                text-align: center;
+                position: relative;
+                font-size: 1rem;
+                border: none;
+            }
+            .download-btn {
+                justify-content: center;
+            }
+            td:before {
+                content: attr(data-label);
+                display: block;
+                font-size: 0.92em;
+                color: var(--md-footer-color);
+                font-weight: 500;
+                margin-bottom: 2px;
+            }
+            .download-btn {
+                width: 100%;
+                min-width: unset;
+                margin-top: 8px;
+            }
+        }
         }
     </style>
 </head>
-<body>
-    <nav>
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo center">ReVanced Apps</a>
+    <body>
+    <header>
+        <div class="header-content">
+            <span class="material-icons header-icon">apps</span>
+            <span class="header-title">ReVanced Apps</span>
+            <button id="lang-switch" class="lang-btn" type="button" title="Switch language" style="margin-left:16px;">FR</button>
         </div>
-    </nav>
+    </header>
     <main>
-        <div class="container">
-            <h4>Latest Release</h4>
-            <table class="highlight">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Version</th>
-                        <th>Link</th>
-                    </tr>
-                </thead>
-                <tbody id="release-table">
-                    <!-- Data will be populated here -->
-                </tbody>
-            </table>
-        </div>
-    </main>
-    <footer class="page-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <h5 class="white-text">ReVanced Apps</h5>
-                    <p class="grey-text text-lighten-4">Listing all assets from the latest release.</p>
-                </div>
+        <div class="card">
+            <div class="card-title">Latest available versions</div>
+            <div class="tabs-bar">
+                <button class="tab-btn active" id="tab-normal" type="button">Normal Apps</button>
+                <button class="tab-btn" id="tab-magisk" type="button">Magisk Apps</button>
+            </div>
+            <div id="magisk-description" style="display:none; margin: 0 24px 16px 24px; background:rgba(255,255,255,0.03); border-radius:12px; padding:16px; color:#ffb300; font-size:0.98rem;">
+                <b>What is Magisk?</b><br>
+                Magisk is a systemless rooting solution for Android devices. Magisk modules (like these apps) are designed to be installed via the Magisk Manager and modify the system without altering the system partition.<br><br>
+                <b>Warning:</b> Magisk apps are only for advanced users who have an unlocked bootloader and Magisk installed. <u>Do not use these if you do not know what Magisk is</u> or if your device is not rooted with Magisk. Using Magisk apps incorrectly can cause your device to malfunction or become unbootable.
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Version</th>
+                            <th>Download</th>
+                        </tr>
+                    </thead>
+                    <tbody id="release-table">
+                        <!-- Data will be populated here -->
+                    </tbody>
+                </table>
             </div>
         </div>
+    </main>
+    <footer class="footer">
+        ReVanced Apps &mdash; Listing all assets from the latest release.<br>
+        <a href="https://github.com/V1ck3s/revanced-apps" target="_blank" style="color:var(--md-primary);text-decoration:underline;">Source GitHub</a> &mdash; © 2025
     </footer>
     <script>
+        // Traductions
+        const translations = {
+            en: {
+                title: 'ReVanced Apps',
+                latest: 'Latest available versions',
+                tabNormal: 'Normal Apps',
+                tabMagisk: 'Magisk Apps',
+                magiskDesc: `<b>What is Magisk?</b><br>Magisk is a systemless rooting solution for Android devices. Magisk modules (like these apps) are designed to be installed via the Magisk Manager and modify the system without altering the system partition.<br><br><b>Warning:</b> Magisk apps are only for advanced users who have an unlocked bootloader and Magisk installed. <u>Do not use these if you do not know what Magisk is</u> or if your device is not rooted with Magisk. Using Magisk apps incorrectly can cause your device to malfunction or become unbootable.`,
+                colName: 'Name',
+                colVersion: 'Version',
+                colDownload: 'Download',
+                download: 'Download',
+                footer: 'ReVanced Apps — Listing the latest release for each package.<br><a href="https://github.com/V1ck3s/revanced-apps" target="_blank" style="color:var(--md-primary);text-decoration:underline;">GitHub Source</a> &mdash; © 2025',
+                langBtn: 'FR',
+                langTitle: 'Switch language'
+            },
+            fr: {
+                title: 'ReVanced Apps',
+                latest: 'Dernières versions disponibles',
+                tabNormal: 'Applications normales',
+                tabMagisk: 'Applications Magisk',
+                magiskDesc: `<b>Qu'est-ce que Magisk&nbsp;?</b><br>Magisk est une solution de root "systemless" pour Android. Les modules Magisk (comme ces applications) s'installent via Magisk Manager et modifient le système sans toucher à la partition système.<br><br><b>Attention&nbsp;:</b> Les applications Magisk sont réservées aux utilisateurs avancés ayant un bootloader déverrouillé et Magisk installé. <u>N'utilisez pas ces applications si vous ne savez pas ce qu'est Magisk</u> ou si votre appareil n'est pas rooté avec Magisk. Une mauvaise utilisation peut rendre votre appareil inutilisable ou non démarrable.`,
+                colName: 'Nom',
+                colVersion: 'Version',
+                colDownload: 'Télécharger',
+                download: 'Télécharger',
+                footer: 'ReVanced Apps — Dernière version disponible pour chaque package.<br><a href="https://github.com/V1ck3s/revanced-apps" target="_blank" style="color:var(--md-primary);text-decoration:underline;">Source GitHub</a> &mdash; © 2025',
+                langBtn: 'EN',
+                langTitle: 'Changer de langue'
+            }
+        };
+        let currentLang = 'en';
+
+        function applyTranslations() {
+            const t = translations[currentLang];
+            document.title = t.title + ' - Latest Release';
+            document.querySelector('.header-title').textContent = t.title;
+            document.querySelector('.card-title').textContent = t.latest;
+            document.getElementById('tab-normal').textContent = t.tabNormal;
+            document.getElementById('tab-magisk').textContent = t.tabMagisk;
+            document.getElementById('magisk-description').innerHTML = t.magiskDesc;
+            document.getElementById('lang-switch').textContent = t.langBtn;
+            document.getElementById('lang-switch').title = t.langTitle;
+            // Colonnes
+            const ths = document.querySelectorAll('.table-container th');
+            if (ths.length === 3) {
+                ths[0].textContent = t.colName;
+                ths[1].textContent = t.colVersion;
+                ths[2].textContent = t.colDownload;
+            }
+            // Footer
+            document.querySelector('.footer').innerHTML = t.footer;
+        }
+
+        // Ajout du switch de langue sans recharger la page ni relancer le fetch
+        document.addEventListener('DOMContentLoaded', function() {
+            let normalApps = {};
+            let magiskApps = {};
+            let currentTab = 'normal';
+
+            function renderTable(apps) {
+                const table = document.getElementById('release-table');
+                table.innerHTML = '';
+                Object.keys(apps).forEach(displayName => {
+                    const row = document.createElement('tr');
+                    const nameCell = document.createElement('td');
+                    const versionCell = document.createElement('td');
+                    const linkCell = document.createElement('td');
+                    nameCell.textContent = displayName;
+                    versionCell.textContent = apps[displayName].version;
+                    const btn = document.createElement('button');
+                    btn.className = 'download-btn';
+                    btn.type = 'button';
+                    btn.innerHTML = `<span class="download-btn-content"><span class="material-icons">download</span>${translations[currentLang].download}</span>`;
+                    btn.addEventListener('click', () => {
+                        window.open(apps[displayName].url, '_blank');
+                    });
+                    linkCell.appendChild(btn);
+                    // Responsive: add data-label for mobile
+                    nameCell.setAttribute('data-label', translations[currentLang].colName);
+                    versionCell.setAttribute('data-label', translations[currentLang].colVersion);
+                    linkCell.setAttribute('data-label', translations[currentLang].colDownload);
+                    row.appendChild(nameCell);
+                    row.appendChild(versionCell);
+                    row.appendChild(linkCell);
+                    table.appendChild(row);
+                });
+            }
+
+            function switchTab(tab) {
+                const tabNormal = document.getElementById('tab-normal');
+                const tabMagisk = document.getElementById('tab-magisk');
+                if (tab === 'normal') {
+                    tabNormal.classList.add('active');
+                    tabMagisk.classList.remove('active');
+                    renderTable(normalApps);
+                    document.getElementById('magisk-description').style.display = 'none';
+                    currentTab = 'normal';
+                } else {
+                    tabMagisk.classList.add('active');
+                    tabNormal.classList.remove('active');
+                    renderTable(magiskApps);
+                    document.getElementById('magisk-description').style.display = '';
+                    currentTab = 'magisk';
+                }
+            }
+
+            document.getElementById('lang-switch').addEventListener('click', function() {
+                currentLang = currentLang === 'en' ? 'fr' : 'en';
+                applyTranslations();
+                // Re-render table for translated button
+                if (currentTab === 'normal') {
+                    renderTable(normalApps);
+                } else {
+                    renderTable(magiskApps);
+                }
+            });
+
+            fetch('https://api.github.com/repos/V1ck3s/revanced-apps/releases')
+                .then(response => response.json())
+                .then(data => {
+                    const tabNormal = document.getElementById('tab-normal');
+                    const tabMagisk = document.getElementById('tab-magisk');
+                    // Split apps into normal and magisk
+                    normalApps = {};
+                    magiskApps = {};
+                    data.forEach(release => {
+                        release.assets.forEach(asset => {
+                            const nameParts = asset.name.split('-');
+                            const version = nameParts.slice(2).join('-').replace('v', '').replace('.apk', '').replace('.zip','');
+                            const name = nameParts[0];
+                            const isMagisk = asset.name.toLowerCase().includes('magisk');
+                            const displayName = name;
+                            if (isMagisk) {
+                                if (!magiskApps[displayName] || magiskApps[displayName].version < version) {
+                                    magiskApps[displayName] = {
+                                        version: version,
+                                        url: asset.browser_download_url
+                                    };
+                                }
+                            } else {
+                                if (!normalApps[displayName] || normalApps[displayName].version < version) {
+                                    normalApps[displayName] = {
+                                        version: version,
+                                        url: asset.browser_download_url
+                                    };
+                                }
+                            }
+                        });
+                    });
+                    applyTranslations();
+                    switchTab('normal');
+                    tabNormal.addEventListener('click', () => switchTab('normal'));
+                    tabMagisk.addEventListener('click', () => switchTab('magisk'));
+                })
+                .catch(error => {
+                    const table = document.getElementById('release-table');
+                    table.innerHTML = `<tr><td colspan='3' style='color:#b00020;text-align:center;'>Error loading data.</td></tr>`;
+                });
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
             fetch('https://api.github.com/repos/V1ck3s/revanced-apps/releases')
                 .then(response => response.json())
                 .then(data => {
                     const table = document.getElementById('release-table');
-                    const latestVersions = {};
+                    const tabNormal = document.getElementById('tab-normal');
+                    const tabMagisk = document.getElementById('tab-magisk');
+                    // Split apps into normal and magisk
+                    const normalApps = {};
+                    const magiskApps = {};
 
                     data.forEach(release => {
                         release.assets.forEach(asset => {
                             const nameParts = asset.name.split('-');
                             const version = nameParts.slice(2).join('-').replace('v', '').replace('.apk', '').replace('.zip','');
                             const name = nameParts[0];
-                            const isMagisk = asset.name.includes('magisk');
-
-                            const displayName = isMagisk ? `${name} Magisk` : name;
-
-                            if (!latestVersions[displayName] || latestVersions[displayName].version < version) {
-                                latestVersions[displayName] = {
-                                    version: version,
-                                    url: asset.browser_download_url
-                                };
+                            const isMagisk = asset.name.toLowerCase().includes('magisk');
+                            const displayName = name;
+                            if (isMagisk) {
+                                if (!magiskApps[displayName] || magiskApps[displayName].version < version) {
+                                    magiskApps[displayName] = {
+                                        version: version,
+                                        url: asset.browser_download_url
+                                    };
+                                }
+                            } else {
+                                if (!normalApps[displayName] || normalApps[displayName].version < version) {
+                                    normalApps[displayName] = {
+                                        version: version,
+                                        url: asset.browser_download_url
+                                    };
+                                }
                             }
                         });
                     });
 
-                    Object.keys(latestVersions).forEach(displayName => {
-                        const row = document.createElement('tr');
-                        const nameCell = document.createElement('td');
-                        const versionCell = document.createElement('td');
-                        const linkCell = document.createElement('td');
-                        const link = document.createElement('a');
+                    function renderTable(apps) {
+                        table.innerHTML = '';
+                        Object.keys(apps).forEach(displayName => {
+                            const row = document.createElement('tr');
+                            const nameCell = document.createElement('td');
+                            const versionCell = document.createElement('td');
+                            const linkCell = document.createElement('td');
 
-                        nameCell.textContent = displayName;
-                        versionCell.textContent = latestVersions[displayName].version;
-                        link.href = latestVersions[displayName].url;
-                        link.textContent = 'Download';
-                        link.target = '_blank';
+                            nameCell.textContent = displayName;
+                            versionCell.textContent = apps[displayName].version;
 
-                        linkCell.appendChild(link);
-                        row.appendChild(nameCell);
-                        row.appendChild(versionCell);
-                        row.appendChild(linkCell);
-                        table.appendChild(row);
+                            // Material 3 style button (HTML version, visuel accentué)
+                            const btn = document.createElement('button');
+                            btn.className = 'download-btn';
+                            btn.type = 'button';
+                            btn.innerHTML = `<span class="download-btn-content"><span class="material-icons">download</span>${translations[currentLang].download}</span>`;
+                            btn.addEventListener('click', () => {
+                                window.open(apps[displayName].url, '_blank');
+                            });
+                            linkCell.appendChild(btn);
+                            row.appendChild(nameCell);
+                            row.appendChild(versionCell);
+                            row.appendChild(linkCell);
+                            table.appendChild(row);
+                        });
+                    }
+
+                    // Initial render: normal apps
+                    renderTable(normalApps);
+                    document.getElementById('magisk-description').style.display = 'none';
+
+                    // Tab switching
+                    tabNormal.addEventListener('click', () => {
+                        tabNormal.classList.add('active');
+                        tabMagisk.classList.remove('active');
+                        renderTable(normalApps);
+                        document.getElementById('magisk-description').style.display = 'none';
+                    });
+                    tabMagisk.addEventListener('click', () => {
+                        tabMagisk.classList.add('active');
+                        tabNormal.classList.remove('active');
+                        renderTable(magiskApps);
+                        document.getElementById('magisk-description').style.display = '';
                     });
                 })
-                .catch(error => console.error('Error fetching release data:', error));
+                .catch(error => {
+                    const table = document.getElementById('release-table');
+                    table.innerHTML = `<tr><td colspan='3' style='color:#b00020;text-align:center;'>Error loading data.</td></tr>`;
+                });
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

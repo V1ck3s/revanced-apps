@@ -1,6 +1,6 @@
 {
-  "version": "v8.10.52 (patches 5.48.0)",
-  "versionCode": 71,
-  "zipUrl": "https://github.com/V1ck3s/revanced-apps/releases/download/71/music-revanced-magisk-v8.10.52-arm-v7a.zip",
+  "version": "v8.40.54 (patches 6.1.0.rvp)",
+  "versionCode": 73,
+  "zipUrl": "https://github.com/V1ck3s/revanced-apps/releases/download/73/music-revanced-module-v8.40.54-arm-v7a.zip",
   "changelog": "https://raw.githubusercontent.com/V1ck3s/revanced-apps/update/build.md"
 }
